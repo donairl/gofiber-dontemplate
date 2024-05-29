@@ -30,5 +30,10 @@ func New() *fiber.App {
 		}, "layouts/main")
 	})
 
+	app.Static(
+		"/static",  // mount address
+		"./public", // path to the file folder
+	)
+
 	return app
 }
