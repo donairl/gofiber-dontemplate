@@ -22,7 +22,7 @@ func New() *fiber.App {
 
 	// Pass the engine to the Views
 	app := fiber.New(fiber.Config{
-		Views: engine,
+		Views:       engine,
 		ViewsLayout: "layouts/main",
 	})
 
@@ -80,26 +80,24 @@ func New() *fiber.App {
 	}))
 
 	// Define a route for the GET method on the root path '/'
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/dashboard", func(c *fiber.Ctx) error {
 		// Send a string response to the client
 		return c.SendString("Hello, World 👋!")
 	})
 
-	app.Get("/login", func(c *fiber.Ctx) error {
+	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
 		csrfToken, ok := c.Locals("csrf").(string)
 
-
-
 		return c.Render("login", fiber.Map{
-			"Title": "Login Page",
-			"csrf":  csrfToken,
-			"status":ok,
+			"Title":  "Login Page",
+			"csrf":   csrfToken,
+			"status": ok,
 		}, "layouts/main")
 	})
 
 	app.Post("/login", handlers.Authlogin)
-	app.Get("/test", handlers.Usertest)
+	//app.Get("/test", handlers.Usertest)
 
 	app.Get("/metrics", monitor.New(monitor.Config{Title: "MyService Metrics Page"}))
 
