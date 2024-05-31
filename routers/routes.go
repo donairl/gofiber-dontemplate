@@ -80,12 +80,12 @@ func New() *fiber.App {
 	}))
 
 	// Define a route for the GET method on the root path '/'
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/dashboard", func(c *fiber.Ctx) error {
 		// Send a string response to the client
 		return c.SendString("Hello, World 👋!")
 	})
 
-	app.Get("/login", func(c *fiber.Ctx) error {
+	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
 		csrfToken, ok := c.Locals("csrf").(string)
 
