@@ -22,7 +22,7 @@ func New() *fiber.App {
 
 	// Pass the engine to the Views
 	app := fiber.New(fiber.Config{
-		Views: engine,
+		Views:       engine,
 		ViewsLayout: "layouts/main",
 	})
 
@@ -89,17 +89,15 @@ func New() *fiber.App {
 		// Render index
 		csrfToken, ok := c.Locals("csrf").(string)
 
-
-
 		return c.Render("login", fiber.Map{
-			"Title": "Login Page",
-			"csrf":  csrfToken,
-			"status":ok,
+			"Title":  "Login Page",
+			"csrf":   csrfToken,
+			"status": ok,
 		}, "layouts/main")
 	})
 
 	app.Post("/login", handlers.Authlogin)
-	app.Get("/test", handlers.Usertest)
+	//app.Get("/test", handlers.Usertest)
 
 	app.Get("/metrics", monitor.New(monitor.Config{Title: "MyService Metrics Page"}))
 
