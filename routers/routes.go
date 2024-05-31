@@ -97,7 +97,7 @@ func New() *fiber.App {
 	})
 
 	app.Post("/login", handlers.Authlogin)
-	//app.Get("/test", handlers.Usertest)
+	app.Get("/dashboard", handlers.Usertest)
 
 	app.Get("/metrics", monitor.New(monitor.Config{Title: "MyService Metrics Page"}))
 
