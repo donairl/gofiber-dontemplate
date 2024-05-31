@@ -7,27 +7,27 @@ func Authlogin(c *fiber.Ctx) error {
 	password := c.FormValue("password")
 
 	// Check if the credentials are valid
-	user, exists := users[username]
-	var checkPassword string
-	if exists {
-		checkPassword = user.Password
-	} else {
-		checkPassword = emptyHashString
-	}
+	// user, exists := users[username]
+	// var checkPassword string
+	// if exists {
+	// 	checkPassword = user.Password
+	// } else {
+	// 	checkPassword = emptyHashString
+	// }
 
-	if bcrypt.CompareHashAndPassword([]byte(checkPassword), []byte(password)) != nil {
-		// Authentication failed
-		csrfToken, ok := c.Locals("csrf").(string)
-		if !ok {
-			return c.SendStatus(fiber.StatusInternalServerError)
-		}
+	// if bcrypt.CompareHashAndPassword([]byte(checkPassword), []byte(password)) != nil {
+	// 	// Authentication failed
+	// 	csrfToken, ok := c.Locals("csrf").(string)
+	// 	if !ok {
+	// 		return c.SendStatus(fiber.StatusInternalServerError)
+	// 	}
+ //
+	// 	return c.Render("login", fiber.Map{
+	// 		"Title": "Login",
+	// 		"csrf":  csrfToken,
+	// 		"error": "Invalid credentials",
+	// 	})
+	// }
 
-		return c.Render("login", fiber.Map{
-			"Title": "Login",
-			"csrf":  csrfToken,
-			"error": "Invalid credentials",
-		})
-	}
-
-	return c.SendString("You are login 👋!")
+	return c.SendString("You are login 👋! "+username + " : "+ password)
 }
