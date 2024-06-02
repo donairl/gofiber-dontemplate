@@ -17,7 +17,7 @@ func Authlogin(c *fiber.Ctx) error {
 	username := c.FormValue("username")
 	password := c.FormValue("password")
 
-	if username == password {
+	if (username == "donny.airlangga@gmail.com") && (password == "asdf1234") {
 		//return c.SendString("You are login 👋! " + username + " : " + password)
 		sess.Set("name", username)
 		if err := sess.Save(); err != nil {
