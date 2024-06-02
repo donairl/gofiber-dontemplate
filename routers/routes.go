@@ -83,7 +83,7 @@ func New() *fiber.App {
 	app.Get("/dashboard", handlers.Dashboard)
 
 	app.Get("/", handlers.LoginView)
-
+	app.Get("/login", handlers.LoginView)
 	app.Post("/login", handlers.Authlogin)
 	app.Get("/dashboard", handlers.Dashboard)
 
