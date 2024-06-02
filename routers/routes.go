@@ -13,6 +13,8 @@ import (
 	"github.com/gofiber/template/html/v2"
 )
 
+var Store *session.Store
+
 func New() *fiber.App {
 	engine := html.New("./views", ".html")
 
@@ -34,7 +36,7 @@ func New() *fiber.App {
 		CookieHTTPOnly: true,
 		CookieSameSite: "Lax",
 	}
-	store := session.New(sessConfig)
+	Store = session.New(sessConfig)
 
 	csrfErrorHandler := func(c *fiber.Ctx, err error) error {
 		// Log the error so we can track who is trying to perform CSRF attacks
@@ -62,7 +64,7 @@ func New() *fiber.App {
 	}
 	// Configure the CSRF middleware
 	csrfConfig := csrf.Config{
-		Session:        store,
+		Session:        Store,
 		KeyLookup:      "form:csrf",   // In this example, we will be using a hidden input field to store the CSRF token
 		CookieName:     "__Host-csrf", // Recommended to use the __Host- prefix when serving the app over TLS
 		CookieSameSite: "Lax",         // Recommended to set this to Lax or Strict

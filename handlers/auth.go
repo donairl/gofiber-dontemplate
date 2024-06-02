@@ -7,11 +7,20 @@ import (
 )
 
 func Authlogin(c *fiber.Ctx) error {
+	sess, err := Store.Get(c)
+	if err != nil {
+		panic(err)
+	}
 	username := c.FormValue("username")
 	password := c.FormValue("password")
 
 	if username == password {
 		//return c.SendString("You are login 👋! " + username + " : " + password)
+		sess.Set("name", c.Query("name", "unknown user"))
+		if err := sess.Save(); err != nil {
+			panic(err)
+		}
+
 		return c.Redirect(
 			"/dashboard",
 			http.StatusMovedPermanently,
