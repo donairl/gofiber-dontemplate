@@ -4,7 +4,10 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 )
+
+var Store *session.Store
 
 func Authlogin(c *fiber.Ctx) error {
 	sess, err := Store.Get(c)
@@ -16,7 +19,7 @@ func Authlogin(c *fiber.Ctx) error {
 
 	if username == password {
 		//return c.SendString("You are login 👋! " + username + " : " + password)
-		sess.Set("name", c.Query("name", "unknown user"))
+		sess.Set("name", username)
 		if err := sess.Save(); err != nil {
 			panic(err)
 		}

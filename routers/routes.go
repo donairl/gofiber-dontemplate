@@ -13,8 +13,6 @@ import (
 	"github.com/gofiber/template/html/v2"
 )
 
-var Store *session.Store
-
 func New() *fiber.App {
 	engine := html.New("./views", ".html")
 
@@ -36,7 +34,9 @@ func New() *fiber.App {
 		CookieHTTPOnly: true,
 		CookieSameSite: "Lax",
 	}
-	Store = session.New(sessConfig)
+
+	Store := session.New(sessConfig)
+	handlers.Store = Store
 
 	csrfErrorHandler := func(c *fiber.Ctx, err error) error {
 		// Log the error so we can track who is trying to perform CSRF attacks
@@ -82,10 +82,7 @@ func New() *fiber.App {
 	}))
 
 	// Define a route for the GET method on the root path '/'
-	app.Get("/dashboard", func(c *fiber.Ctx) error {
-		// Send a string response to the client
-		return c.SendString("Hello, World 👋!")
-	})
+	app.Get("/dashboard", handlers.Dashboard)
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
