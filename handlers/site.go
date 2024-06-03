@@ -36,5 +36,7 @@ func LoginView(c *fiber.Ctx) error {
 }
 
 func AboutHandler(c *fiber.Ctx) error {
-	return c.SendString("This is about page")
+	return c.Render("about", fiber.Map{
+		"Title": "Login Page",
+	})
 }
