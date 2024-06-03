@@ -3,11 +3,12 @@ package handlers
 import (
 	"fmt"
 
+	"github.com/donairl/gofiber-dontemplate/lib"
 	"github.com/gofiber/fiber/v2"
 )
 
 func Dashboard(c *fiber.Ctx) error {
-	sess, err := Store.Get(c)
+	sess, err := lib.Store.Get(c)
 	if err != nil {
 		panic(err)
 	}
