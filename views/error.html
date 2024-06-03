@@ -1,8 +1,14 @@
-<h2>Error {{ .ErrorCode }}</h2>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Error {{ .ErrorCode }}</h5>
+
+
 <p>Sorry, there was an error</p>
 <p>{{ .Error }}</p>
 <p><a href="/">Home</a> | <a href="#" onclick="goToReferer()">Go to referrer (GET)</a></p>
 <!-- End: csrf-with-session/views/error.html -->
+</div>
+</div>
 
 <script>
     function goToReferer() {

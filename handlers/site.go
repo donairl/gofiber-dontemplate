@@ -15,7 +15,14 @@ func Dashboard(c *fiber.Ctx) error {
 	username := sess.Get("username")
 	AuthorizedMessage := fmt.Sprintf("Welcome %v", username)
 
-	return c.SendString("You are test :" + AuthorizedMessage)
+	csrfToken, ok := c.Locals("csrf").(string)
+
+	return c.Render("dashboard", fiber.Map{
+		"Title":   "Dashboard",
+		"csrf":    csrfToken,
+		"status":  ok,
+		"message": AuthorizedMessage,
+	}, "layouts/main")
 }
 func LoginView(c *fiber.Ctx) error {
 	// Render index
@@ -28,6 +35,6 @@ func LoginView(c *fiber.Ctx) error {
 	}, "layouts/main")
 }
 
-// func CsrfErrorHandler(c *fiber.Ctx) error {
-// 	return c.SendString("Error")
-// }
+func AboutHandler(c *fiber.Ctx) error {
+	return c.SendString("This is about page")
+}

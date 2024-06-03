@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
@@ -27,11 +29,11 @@ func Authlogin(c *fiber.Ctx) error {
 		if err := sess.Save(); err != nil {
 			panic(err)
 		}
-		return c.SendString("You are login 👋! " + username + " : " + password)
-		// return c.Redirect(
-		// 	"/dashboard",
-		// 	http.StatusMovedPermanently,
-		// )
+		//return c.SendString("You are login 👋! " + username + " : " + password)
+		return c.Redirect(
+			"/dashboard",
+			http.StatusMovedPermanently,
+		)
 	} else {
 
 		csrfToken, ok := c.Locals("csrf").(string)

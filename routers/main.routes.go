@@ -5,10 +5,10 @@ import (
 	"time"
 
 	"github.com/donairl/gofiber-dontemplate/handlers"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/csrf"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/template/html/v2"
 )
@@ -77,7 +77,7 @@ func New() *fiber.App {
 	}
 	csrfMiddleware := csrf.New(csrfConfig)
 
-	//app.Use(csrf.New())
+	app.Use(csrfMiddleware)
 
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
@@ -86,12 +86,12 @@ func New() *fiber.App {
 	// Define a route for the GET method on the root path '/'
 	app.Get("/dashboard", handlers.Dashboard)
 
-	app.Get("/", csrfMiddleware, handlers.LoginView)
-	app.Get("/login", csrfMiddleware, handlers.LoginView)
-	app.Post("/login", csrfMiddleware, handlers.Authlogin)
+	app.Get("/", handlers.LoginView)
+	app.Get("/login", handlers.LoginView)
+	app.Post("/login", handlers.Authlogin)
 	app.Get("/dashboard", handlers.Dashboard)
 
-	app.Get("/metrics", monitor.New(monitor.Config{Title: "MyService Metrics Page"}))
+	SysRoutes(app)
 
 	app.Static(
 		"/static",  // mount address
