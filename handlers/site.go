@@ -33,7 +33,7 @@ func LoginView(c *fiber.Ctx) error {
 		"Title":  "Login Page",
 		"csrf":   csrfToken,
 		"status": ok,
-	}, "layouts/main")
+	})
 }
 
 func RegisterView(c *fiber.Ctx) error {
@@ -44,7 +44,7 @@ func RegisterView(c *fiber.Ctx) error {
 		"Title":  "Login Page",
 		"csrf":   csrfToken,
 		"status": ok,
-	}, "layouts/main")
+	})
 }
 
 func AboutHandler(c *fiber.Ctx) error {
