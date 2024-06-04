@@ -37,7 +37,7 @@ func LoginView(c *fiber.Ctx) error {
 }
 
 func RegisterView(c *fiber.Ctx) error {
-	// Render index
+	// Render register view
 	csrfToken, ok := c.Locals("csrf").(string)
 
 	return c.Render("register", fiber.Map{
