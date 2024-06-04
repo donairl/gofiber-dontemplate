@@ -24,7 +24,11 @@ func AuthRegister(c *fiber.Ctx) error {
 	}
 	user.Birthday = &birthday
 	models.UserSave(user)
+	csrfToken, ok := c.Locals("csrf").(string)
+	if !ok {
 
+		return c.SendStatus(fiber.StatusInternalServerError)
+	}
 	return c.Render("login", fiber.Map{
 		"Title": "Login",
 		"csrf":  csrfToken,

@@ -13,6 +13,7 @@ import (
 
 	"github.com/donairl/gofiber-dontemplate/lib"
 	"github.com/donairl/gofiber-dontemplate/lib/database"
+	"github.com/donairl/gofiber-dontemplate/models"
 	"github.com/donairl/gofiber-dontemplate/routers"
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
@@ -28,6 +29,8 @@ func main() {
 		CookieSameSite: "Lax",
 	}
 	database.ConnectDb()
+	// Migrate the User model
+	database.Connection.AutoMigrate(&models.User{})
 	lib.Store = session.New(sessConfig)
 
 	app := routers.New()
