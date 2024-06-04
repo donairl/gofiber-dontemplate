@@ -25,7 +25,11 @@ func AuthRegister(c *fiber.Ctx) error {
 	user.Birthday = &birthday
 	models.UserSave(user)
 
-	return c.SendString("You are great")
+	return c.Render("login", fiber.Map{
+		"Title": "Login",
+		"csrf":  csrfToken,
+		"error": "Save success",
+	})
 }
 
 func AuthLogin(c *fiber.Ctx) error {
