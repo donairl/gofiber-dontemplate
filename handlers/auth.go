@@ -7,11 +7,12 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Authtest(c *fiber.Ctx) error {
+func AuthRegister(c *fiber.Ctx) error {
+
 	return c.SendString("You are great")
 }
 
-func Authlogin(c *fiber.Ctx) error {
+func AuthLogin(c *fiber.Ctx) error {
 
 	sess, err := lib.Store.Get(c)
 	if err != nil {

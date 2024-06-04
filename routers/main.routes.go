@@ -76,7 +76,9 @@ func New() *fiber.App {
 
 	app.Get("/", handlers.LoginView)
 	app.Get("/login", handlers.LoginView)
-	app.Post("/login", handlers.Authlogin)
+	app.Get("/login", handlers.RegisterView)
+	app.Post("/login", handlers.AuthLogin)
+	app.Post("/register", handlers.AuthRegister)
 	app.Get("/dashboard", handlers.Dashboard)
 
 	SysRoutes(app)

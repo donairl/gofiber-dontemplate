@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/donairl/gofiber-dontemplate/lib"
+	"github.com/donairl/gofiber-dontemplate/lib/database"
 	"github.com/donairl/gofiber-dontemplate/routers"
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
@@ -26,7 +27,7 @@ func main() {
 		CookieHTTPOnly: true,
 		CookieSameSite: "Lax",
 	}
-
+	database.ConnectDb()
 	lib.Store = session.New(sessConfig)
 
 	app := routers.New()

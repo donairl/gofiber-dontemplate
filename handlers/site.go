@@ -36,6 +36,17 @@ func LoginView(c *fiber.Ctx) error {
 	}, "layouts/main")
 }
 
+func RegisterView(c *fiber.Ctx) error {
+	// Render index
+	csrfToken, ok := c.Locals("csrf").(string)
+
+	return c.Render("register", fiber.Map{
+		"Title":  "Login Page",
+		"csrf":   csrfToken,
+		"status": ok,
+	}, "layouts/main")
+}
+
 func AboutHandler(c *fiber.Ctx) error {
 	return c.Render("about", fiber.Map{
 		"Title": "Login Page",

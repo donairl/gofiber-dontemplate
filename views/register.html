@@ -1,0 +1,38 @@
+
+
+<main class="form-signin w-50 m-auto">
+    <form method="post" action="register">
+
+      <h1 class="h3 mb-3 fw-normal">Register Form</h1>
+  
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingUsername" name="username" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingRePassword" name="repassword" placeholder="Retype Password">
+        <label for="floatingPassword">Retype Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingFullname" name="fullname" placeholder="Your name">
+        <label for="floatingInput">Full Name</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingFullname" name="birthday" placeholder="2001-12-31">
+        <label for="floatingInput">Birthday</label>
+      </div>
+      {{ if .error }}
+      <p class="error">Error: {{ .error }}</p>
+      {{ end }}
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      <input type="hidden" name="_csrf" value="{{ .csrf }}">
+     
+    </form>
+  </main>
+  
+  
