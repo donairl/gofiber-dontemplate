@@ -11,10 +11,23 @@ import (
 	"os"
 	"time"
 
+	"github.com/donairl/gofiber-dontemplate/lib"
 	"github.com/donairl/gofiber-dontemplate/routers"
+	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
 func main() {
+
+	// Initialize a session store
+	sessConfig := session.Config{
+		Expiration:     60 * time.Minute,        // Expire sessions after 30 minutes of inactivity
+		KeyLookup:      "cookie:__Host-session", // Recommended to use the __Host- prefix when serving the app over TLS
+		CookieSecure:   true,
+		CookieHTTPOnly: true,
+		CookieSameSite: "Lax",
+	}
+
+	lib.Store = session.New(sessConfig)
 
 	app := routers.New()
 

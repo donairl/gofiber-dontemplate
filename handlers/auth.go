@@ -3,11 +3,9 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/donairl/gofiber-dontemplate/lib"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/session"
 )
-
-var Store *session.Store
 
 func Authtest(c *fiber.Ctx) error {
 	return c.SendString("You are great")
@@ -15,7 +13,7 @@ func Authtest(c *fiber.Ctx) error {
 
 func Authlogin(c *fiber.Ctx) error {
 
-	sess, err := Store.Get(c)
+	sess, err := lib.Store.Get(c)
 	if err != nil {
 
 		panic(err)

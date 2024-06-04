@@ -5,11 +5,11 @@ import (
 	"time"
 
 	"github.com/donairl/gofiber-dontemplate/handlers"
+	"github.com/donairl/gofiber-dontemplate/lib"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/csrf"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/template/html/v2"
 )
 
@@ -25,18 +25,6 @@ func New() *fiber.App {
 		Views:       engine,
 		ViewsLayout: "layouts/main",
 	})
-
-	// Initialize a session store
-	sessConfig := session.Config{
-		Expiration:     60 * time.Minute,        // Expire sessions after 30 minutes of inactivity
-		KeyLookup:      "cookie:__Host-session", // Recommended to use the __Host- prefix when serving the app over TLS
-		CookieSecure:   true,
-		CookieHTTPOnly: true,
-		CookieSameSite: "Lax",
-	}
-
-	store := session.New(sessConfig)
-	handlers.Store = store
 
 	csrfErrorHandler := func(c *fiber.Ctx, err error) error {
 		// Log the error so we can track who is trying to perform CSRF attacks
@@ -65,7 +53,7 @@ func New() *fiber.App {
 
 	// Configure the CSRF middleware
 	csrfConfig := csrf.Config{
-		Session:        handlers.Store,
+		Session:        lib.Store,
 		KeyLookup:      "form:_csrf",  // In this example, we will be using a hidden input field to store the CSRF token
 		CookieName:     "__Host-csrf", // Recommended to use the __Host- prefix when serving the app over TLS
 		CookieSameSite: "Lax",         // Recommended to set this to Lax or Strict
