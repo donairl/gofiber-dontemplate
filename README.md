@@ -1,7 +1,7 @@
-# gofiber-dontemplate
-Template web project using gofiber and gorm
+# GoFiber-DoNTemplate
+This is a template web project built with GoFiber and GORM for rapid development.
 
-TO DO :
-1. Add support gorm
-2. Auth register and login
-3. CRUD user
+## Project Objectives
+- [ ] Integrate GORM for database operations.
+- [ ] Implement authentication features including user registration and login.
+- [ ] Develop CRUD operations for user management.

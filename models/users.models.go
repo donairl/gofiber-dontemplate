@@ -16,10 +16,25 @@ type User struct {
 	Birthday     *time.Time
 }
 
-func FindUserByID(id uint) *User {
+func UserFindByID(id uint) *User {
 
 	user := &User{}
 	database.Connection.First(user, id)
 	//db.Limit(10).Find(&users1).Limit(-1).Find(&users2)
 	return user
+}
+
+func UserFindByEmail(email uint) *User {
+
+	user := &User{}
+	database.Connection.First(user, id)
+	//db.Limit(10).Find(&users1).Limit(-1).Find(&users2)
+	return user
+}
+
+func UserSave(user User) *gorm.DB {
+
+	result := database.Connection.Create(user)
+	return result
+
 }

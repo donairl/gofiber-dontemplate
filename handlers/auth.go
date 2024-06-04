@@ -2,12 +2,28 @@ package handlers
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/donairl/gofiber-dontemplate/lib"
+	"github.com/donairl/gofiber-dontemplate/models"
 	"github.com/gofiber/fiber/v2"
 )
 
 func AuthRegister(c *fiber.Ctx) error {
+	user := models.User{}
+
+	user.Email = c.FormValue("username")
+	user.PasswordHash = c.FormValue("password")
+	//	repassword := c.FormValue("repassword")
+	user.Fullname = c.FormValue("fullname")
+	birthdayStr := c.FormValue("birthday")
+	birthday, err := time.Parse("2006-01-02", birthdayStr)
+	if err != nil {
+		// handle error if the date format is incorrect
+		return c.Status(fiber.StatusBadRequest).SendString("Invalid date format")
+	}
+	user.Birthday = &birthday
+	models.UserSave(user)
 
 	return c.SendString("You are great")
 }
