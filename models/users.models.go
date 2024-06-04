@@ -24,10 +24,10 @@ func UserFindByID(id uint) *User {
 	return user
 }
 
-func UserFindByEmail(email uint) *User {
+func UserFindByEmail(email string) *User {
 
 	user := &User{}
-	database.Connection.First(user, id)
+	database.Connection.Where("email = ?", email).First(user)
 	//db.Limit(10).Find(&users1).Limit(-1).Find(&users2)
 	return user
 }

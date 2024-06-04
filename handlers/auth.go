@@ -16,6 +16,7 @@ func AuthRegister(c *fiber.Ctx) error {
 	user.PasswordHash = c.FormValue("password")
 	//	repassword := c.FormValue("repassword")
 	user.Fullname = c.FormValue("fullname")
+
 	birthdayStr := c.FormValue("birthday")
 	birthday, err := time.Parse("2006-01-02", birthdayStr)
 	if err != nil {
@@ -24,6 +25,7 @@ func AuthRegister(c *fiber.Ctx) error {
 	}
 	user.Birthday = &birthday
 	models.UserSave(user)
+
 	csrfToken, ok := c.Locals("csrf").(string)
 	if !ok {
 

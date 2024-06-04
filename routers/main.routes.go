@@ -66,6 +66,7 @@ func New() *fiber.App {
 	csrfMiddleware := csrf.New(csrfConfig)
 
 	app.Use(csrfMiddleware)
+	app.Use(memcached.New())
 
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
