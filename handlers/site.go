@@ -52,3 +52,5 @@ func AboutHandler(c *fiber.Ctx) error {
 		"Title": "Login Page",
 	})
 }
+
+//render forget password view

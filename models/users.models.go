@@ -48,3 +48,13 @@ func UserDelete(id uint) *gorm.DB {
 	result := database.Connection.Delete(&User{}, id)
 	return result
 }
+
+// Function to display all users
+func UserFindAll() ([]User, error) {
+	users := []User{}
+	err := database.Connection.Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
