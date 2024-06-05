@@ -38,3 +38,13 @@ func UserSave(user User) *gorm.DB {
 	return result
 
 }
+
+func UserUpdate(id uint, user User) *gorm.DB {
+	result := database.Connection.Model(&User{}).Where("id = ?", id).Updates(user)
+	return result
+}
+
+func UserDelete(id uint) *gorm.DB {
+	result := database.Connection.Delete(&User{}, id)
+	return result
+}
