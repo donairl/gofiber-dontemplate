@@ -9,17 +9,11 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="container">
-    <h2>Bootstrap Date Picker Example</h2>
-    <div class="form-group">
-       
-    </div>
-</div>
 
 <main class="form-signin w-50 m-auto">
     <form method="post" action="register">
 
-      <h1 class="h3 mb-3 fw-normal">Register Form</h1>
+      <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
   
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingUsername" name="username" placeholder="name@example.com">
@@ -56,7 +50,7 @@ $(document).ready(function(){
         </div>
       </div>
       {{ if .error }}
-      <p class="error">Error: {{ .error }}</p>
+      <div class="alert alert-danger" role="alert">Error: {{ .error }}</div>
       {{ end }}
       <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>

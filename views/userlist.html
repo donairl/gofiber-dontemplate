@@ -1,0 +1,14 @@
+<main class="form-signin w-50 m-auto">
+
+
+  <table class="table table-striped">
+      {{range .users}}
+      <tr>
+        <td>{{.fullname}}</td>
+        <td>{{.email}}</td>
+        <td>{{.birthday}} </td>
+      </tr>
+      {{end}}
+  </table>
+  
+</main>

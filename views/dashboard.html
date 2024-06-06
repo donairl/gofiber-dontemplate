@@ -1,4 +1,17 @@
 {{template "layouts/menu" .}}
 <main class="dashboard w-100 m-auto">
-Hello this is dashboard
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>Column 1</h2>
+      <p>Hello from column {{.message}}!</p>
+    </div>
+    <div class="col-sm-4">
+      <h2>Column 2</h2>
+      <p>Hello from column 2!</p>
+    </div>
+    <div class="col-sm-4">
+      <h2>Column 3</h2>
+      <p>Hello from column 3!</p>
+    </div>
+  </div>
 </main>

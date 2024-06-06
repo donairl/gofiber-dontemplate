@@ -1,6 +1,7 @@
 package models
 
 import (
+	"log"
 	"time"
 
 	"github.com/donairl/gofiber-dontemplate/lib/database"
@@ -50,11 +51,11 @@ func UserDelete(id uint) *gorm.DB {
 }
 
 // Function to display all users
-func UserFindAll() ([]User, error) {
+func UserFindAll() []User {
 	users := []User{}
 	err := database.Connection.Find(&users).Error
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
-	return users, nil
+	return users
 }

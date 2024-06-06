@@ -33,6 +33,13 @@ func CreateProduct(product *Product) error {
 	return nil
 }
 
+func UpdateProduct(product *Product) error {
+	if result := database.Connection.Save(product); result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
 func GetAllProducts() ([]Product, error) {
 	var products []Product
 	if err := database.Connection.Find(&products).Error; err != nil {

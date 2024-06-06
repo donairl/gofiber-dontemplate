@@ -2,14 +2,15 @@
     <div class="card-body">
       <h5 class="card-title">Error {{ .ErrorCode }}</h5>
 
+        <p>Sorry, there was an error</p>
+        <p>{{ .Error }}</p>
 
-<p>Sorry, there was an error</p>
-<p>{{ .Error }}</p>
-<p><a href="/">Home</a> | <a href="#" onclick="goToReferer()">Go to referrer (GET)</a></p>
-<!-- End: csrf-with-session/views/error.html -->
+        <!-- Add a margin to the links to give them some space -->
+        <p><a href="/">Home</a>&nbsp;|&nbsp;<a href="#" onclick="goToReferer()">Go to referrer (GET)</a></p>
 </div>
 </div>
 
+<!-- Add a function to the script tag that handles the click event -->
 <script>
     function goToReferer() {
         window.location.href = document.referrer;

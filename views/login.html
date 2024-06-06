@@ -1,47 +1,49 @@
 <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
     }
-  </style>
+  }
+</style>
 
 <main class="form-signin w-50 m-auto">
-    <form method="post" action="login">
-      <img class="mb-4" src="/static/images/login.svg" alt="" width="180" height="180">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-  
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
-  
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      {{ if .error }}
-      <p class="error">Error: {{ .error }}</p>
-      {{ end }}
-      <a class="btn btn-success" href="/register">Register</a>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-      <input type="hidden" name="_csrf" value="{{ .csrf }}">
-     
-    </form>
-  </main>
-  
-  
+  <form method="post" action="login">
+    <img class="mb-4" src="/static/images/login.svg" alt="" width="180" height="180">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    {{ if .error }}
+    <div class="alert alert-danger error">Error: {{ .error }}</div>
+    {{ end }}
+    {{ if .success }}
+    <div class="alert alert-success success" role="alert">Success: {{ .success }}</div>
+    {{ end }}
+
+    <a class="btn btn-success" href="/register">Register</a>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <input type="hidden" name="_csrf" value="{{ .csrf }}">
+
+  </form>
+</main>

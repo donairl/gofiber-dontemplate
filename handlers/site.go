@@ -39,11 +39,18 @@ func LoginView(c *fiber.Ctx) error {
 func RegisterView(c *fiber.Ctx) error {
 	// Render register view
 	csrfToken, ok := c.Locals("csrf").(string)
+	sess, err := lib.Store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+
+	flashError := sess.Get("flash-error")
 
 	return c.Render("register", fiber.Map{
 		"Title":  "Login Page",
 		"csrf":   csrfToken,
 		"status": ok,
+		"error":  flashError,
 	})
 }
 
@@ -52,5 +59,3 @@ func AboutHandler(c *fiber.Ctx) error {
 		"Title": "Login Page",
 	})
 }
-
-//render forget password view
