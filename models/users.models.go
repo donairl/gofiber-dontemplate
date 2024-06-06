@@ -32,7 +32,7 @@ func UserFindByEmail(email string) *User {
 	return user
 }
 
-func UserCreate(user User) *gorm.DB {
+func UserCreate(user *User) *gorm.DB {
 
 	result := database.Connection.Create(user)
 	return result

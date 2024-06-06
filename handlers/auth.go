@@ -10,21 +10,24 @@ import (
 )
 
 func AuthRegister(c *fiber.Ctx) error {
-	user := models.User{}
+	user := &models.User{}
 
 	user.Email = c.FormValue("username")
 	user.PasswordHash = c.FormValue("password")
 	//	repassword := c.FormValue("repassword")
 	user.Fullname = c.FormValue("fullname")
+	user.Role = 1
 
 	birthdayStr := c.FormValue("birthday")
+	println("username: ", user.Email)
+	println("Birthday", birthdayStr)
 	birthday, err := time.Parse("2006-01-02", birthdayStr)
 	if err != nil {
 		// handle error if the date format is incorrect
 		return c.Status(fiber.StatusBadRequest).SendString("Invalid date format")
 	}
 	user.Birthday = &birthday
-	models.UserSave(user)
+	models.UserCreate(user)
 
 	csrfToken, ok := c.Locals("csrf").(string)
 	if !ok {

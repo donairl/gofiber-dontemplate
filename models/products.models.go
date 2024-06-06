@@ -19,7 +19,7 @@ type Product struct {
 
 func GetProductByID(id uint) (Product, error) {
 	var product Product
-	err := database.DB.First(&product, id).Error
+	err := database.Connection.First(&product, id).Error
 	if err != nil {
 		return Product{}, err
 	}

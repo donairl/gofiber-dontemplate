@@ -1,4 +1,20 @@
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.input-group.date').datepicker({format: 'mm-dd-yyyy'});  
+});
+</script>
+
+<div class="container">
+    <h2>Bootstrap Date Picker Example</h2>
+    <div class="form-group">
+       
+    </div>
+</div>
 
 <main class="form-signin w-50 m-auto">
     <form method="post" action="register">
@@ -21,9 +37,23 @@
         <input type="text" class="form-control" id="floatingFullname" name="fullname" placeholder="Your name">
         <label for="floatingInput">Full Name</label>
       </div>
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingFullname" name="birthday" placeholder="2001-12-31">
-        <label for="floatingInput">Birthday</label>
+            <div class="form-floating">
+              <select class="form-control" id="floatingRole" name="role">
+                <option value="1">Admin</option>
+                <option value="0">Normal User</option>
+              </select>
+              <label for="floatingRole">Role</label>
+            </div>
+
+      <div class="input-group date" id="datepicker">
+      
+        <label for="start_date">Birthday</label>
+        <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id= "floatingBirthday" name="birthday">
+            <div class="input-group-addon">
+              <span class="input-group-text bg-light d-block rounded-0"><i class="fa fa-calendar"></i></span>
+            </div>
+        </div>
       </div>
       {{ if .error }}
       <p class="error">Error: {{ .error }}</p>
