@@ -73,7 +73,7 @@ func AuthLogin(c *fiber.Ctx) error {
 	password := c.FormValue("password")
 
 	user := models.UserFindByEmail(username)
-	okpass := lib.VerifyPassword(user.PasswordHash, password) != nil
+	okpass := lib.VerifyPassword(user.PasswordHash, password) == nil
 
 	if okpass {
 

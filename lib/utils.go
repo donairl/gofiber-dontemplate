@@ -1,6 +1,8 @@
 package lib
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+)
 
 // Generate return a hashed password
 func GeneratePassword(raw string) string {
@@ -14,5 +16,6 @@ func GeneratePassword(raw string) string {
 }
 
 func VerifyPassword(hash string, raw string) error {
+
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(raw))
 }
