@@ -16,7 +16,7 @@ func UserRoutes(app fiber.Router) {
 	r := app.Group("/user")
 	r.Get("/view", handlers.UserCrudView)
 	// Generate route for GET with parameter id
-	r.Get("detail/:id", handlers.UserCrudView)
+	r.Get("edit/:id", handlers.UserEdit)
 	r.Delete("/delete/:id", handlers.UserDeleteHandler)
 
 }

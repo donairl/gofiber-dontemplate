@@ -1,0 +1,62 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.input-group.date').datepicker({format: 'mm-dd-yyyy'});  
+});
+</script>
+
+
+<main class="form-signin w-50 m-auto">
+    <form method="post" action="register">
+
+      <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
+  
+      <div class="form-floating p-1">
+        <input type="email" class="form-control" id="floatingUsername" name="username" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating p-1">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating p-1">
+        <input type="password" class="form-control" id="floatingRePassword" name="repassword" placeholder="Retype Password">
+        <label for="floatingPassword">Retype Password</label>
+      </div>
+      <div class="form-floating p-1">
+        <input type="text" class="form-control" id="floatingFullname" name="fullname" placeholder="Your name">
+        <label for="floatingInput">Full Name</label>
+      </div>
+            <div class="form-floating p-1">
+              <select class="form-control" id="floatingRole" name="role">
+                <option value="1">Admin</option>
+                <option value="0">Normal User</option>
+              </select>
+              <label for="floatingRole">Role</label>
+            </div>
+
+      <div class="input-group date" id="datepicker">
+      
+        <label for="start_date">Birthday</label>
+        <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id= "floatingBirthday" name="birthday">
+            <div class="input-group-addon">
+              <span class="input-group-text bg-light d-block rounded-0"><i class="fa fa-calendar"></i></span>
+            </div>
+        </div>
+      </div>
+      {{ if .error }}
+      <div class="alert alert-danger" role="alert">Error: {{ .error }}</div>
+      {{ end }}
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      <input type="hidden" name="_csrf" value="{{ .csrf }}">
+     
+    </form>
+  </main>
+  
+  
