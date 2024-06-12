@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/donairl/gofiber-dontemplate/lib"
 	"github.com/gofiber/fiber/v2"
@@ -18,12 +19,20 @@ func Dashboard(c *fiber.Ctx) error {
 
 	csrfToken, ok := c.Locals("csrf").(string)
 
+	if !IsAuthenticated(c) {
+		sess.Set("flash-error", "Forbidden, please login first")
+		return c.Redirect(
+			"/login",
+			http.StatusMovedPermanently,
+		)
+	}
+
 	return c.Render("dashboard", fiber.Map{
 		"Title":   "Dashboard",
 		"csrf":    csrfToken,
 		"status":  ok,
 		"message": AuthorizedMessage,
-	}, "layouts/main")
+	})
 }
 func LoginView(c *fiber.Ctx) error {
 	// Render index
