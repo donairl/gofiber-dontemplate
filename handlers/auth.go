@@ -29,8 +29,6 @@ func AuthRegister(c *fiber.Ctx) error {
 	user.Role = uint(role)
 
 	birthdayStr := c.FormValue("birthday")
-	println("username: ", user.Email)
-	println("Birthday", birthdayStr)
 	birthday, err := time.Parse("01-02-2006", birthdayStr)
 	if err != nil {
 		// handle error if the date format is incorrect
@@ -47,6 +45,7 @@ func AuthRegister(c *fiber.Ctx) error {
 		)
 	}
 	user.Birthday = &birthday
+	user.Fullname = c.FormValue("fullname")
 	models.UserCreate(user)
 
 	csrfToken, ok := c.Locals("csrf").(string)

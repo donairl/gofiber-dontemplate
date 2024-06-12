@@ -28,11 +28,11 @@ func UserCrudView(c *fiber.Ctx) error {
 // user delete handler
 func UserDeleteHandler(c *fiber.Ctx) error {
 	id := c.Params("id")
-	userID, err := strconv.Atoi(id)
+	userID, err := strconv.ParseUint(id, 10, 32)
 	if err != nil {
 		return fiber.NewError(fiber.ErrBadRequest.Code, "Invalid user ID")
 	}
-	errdel := models.UserDelete(userId)
+	errdel := models.UserDelete(uint(userID))
 
 	if errdel != nil {
 		return c.Status(500).SendString("Failed to delete user")
