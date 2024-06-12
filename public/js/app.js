@@ -1,38 +1,26 @@
 console.log('app start');
-const form = document.querySelector('#myForm');
 
-form.addEventListener('submit', (event) => {
+$('#myForm').submit(function(event) {
   event.preventDefault(); // prevent form from submitting normally
   
   // get form values
-  const name = document.querySelector('#name').value;
-  const email = document.querySelector('#email').value;
-  
-  // validate form data
-  if (name === '' || email === '') {
-    alert('Please fill out all fields');
-    return false;
-  } else if (!isValidEmail(email)) {
-    alert('Invalid email address');
-    return false;
-  }
+  var formData = $(this).serializeArray();
   
   // submit form data to server
-  fetch('/submit-form', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({name, email}),
-  })
-  .then(response => response.json())
-  .then(data => {
+  $.ajax({
+    type: "POST",
+    url: "/submit-form",
+    contentType: "application/json; charset=utf-8",
+    data: formData,
+    dataType: "json",
+    success: function(result) {
     console.log('Form submitted successfully');
-    // do something with the data from the server if needed
-  })
-  .catch((error) => {
-    console.error('Error:', error);
+      // Do something with the data from the server if needed
+    },
+    error: function(err) {
+      console.error('Error:', err);
     alert('An error occurred while submitting the form');
+    }
   });
 });
 

@@ -17,7 +17,7 @@
         <td style="width: 25%">{{.Email}}</td>
         <td>{{.Birthday}} </td>
         <td class="list-group-item d-flex justify-content-between align-items-center"> 
-          <button data-href="/users/edit?id={{.ID}}" type="button" class="btn btn-primary w-100">Edit</button>
+          <button data-href="/users/edit?id={{.ID}}" type="button" class="btn btn-primary w-100 btn-edit" >Edit</button>
           <button type="button" class="btn btn-danger w-100 " id="btn-delete" data-id="{{.ID}}">Delete</button>
          
         </td>
@@ -27,3 +27,15 @@
   </table>
   {{template "layouts/modal" .}}
   </main>
+  <script>
+     $(document).ready(function(){
+            $('.btn-edit').click(function() {
+              var id = $(this).data('id');
+              $('#dmodal').modal('show'); // Bootstrap modal show javascript
+              $('#dmodal').find('.modal-title').text("Edit User");
+              $('#dmodal').find('.modal-body').html('hello, this not yet implemented')
+              $('#dmodal').find('.modal-footer').html(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
+            });
+      
+     })
+  </script>
