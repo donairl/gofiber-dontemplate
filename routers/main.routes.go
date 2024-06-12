@@ -82,6 +82,7 @@ func New() *fiber.App {
 	app.Get("/dashboard", handlers.Dashboard)
 
 	SysRoutes(app)
+	UserRoutes(app)
 
 	app.Static(
 		"/static",  // mount address
