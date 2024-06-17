@@ -36,8 +36,9 @@ $(document).ready(function(){
       </div>
             <div class="form-floating p-1">
               <select class="form-control" id="floatingRole" name="role">
-                <option value="1">Admin</option>
-                <option value="0">Normal User</option>
+                <option value="1" {{if eq .User.Role 1}} selected {{end}}>Admin</option>
+                
+                <option value="0" {{if eq .User.Role 0}} selected {{end}}>Normal User</option>
               </select>
               <label for="floatingRole">Role</label>
             </div>
