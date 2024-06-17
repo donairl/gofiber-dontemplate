@@ -10,14 +10,17 @@ $(document).ready(function(){
 </script>
 
 
-<main class="form-signin w-50 m-auto">
+<main class="m-auto">
     <form method="post" action="register">
 
       <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
   
       <div class="form-floating p-1">
-        <input type="email" class="form-control" id="floatingUsername" name="username" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+   <input type="email" class="form-control" id="floatingUsername" name="username" value="{{.User.Email}}" placeholder="name@example.com">
+             <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating p-1">
+        <p style="color: red;">If you want to keep old password , leave this field empty.</p>
       </div>
       <div class="form-floating p-1">
         <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">

@@ -106,14 +106,18 @@ func UserEdit(c *fiber.Ctx) error {
 		models.UserCreate(user)
 
 	} else {
+
 		id := c.Params("id")
 		userID, err := strconv.ParseUint(id, 10, 32)
+
 		if err != nil {
 			return fiber.NewError(fiber.ErrBadRequest.Code, "Invalid user ID")
 		}
 
 		flashError := sess.Get("flash-error")
 		usermodel := models.UserFindByID(uint(userID))
+		log.Println(usermodel)
+
 		return c.Render("edit-user", fiber.Map{
 			"Title":  "Edit User",
 			"csrf":   csrfToken,

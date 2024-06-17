@@ -46,19 +46,7 @@ func main() {
 		fmt.Println("Self-signed certificate generated successfully")
 		fmt.Println("You will need to accept the self-signed certificate in your browser")
 	}
-
-	// cert, err := tls.LoadX509KeyPair(certFile, keyFile)
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	// config := &tls.Config{Certificates: []tls.Certificate{cert}}
-
-	// ln, err := tls.Listen("tcp", ":4443", config)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// app.Listener(ln)
+	fmt.Println("Starting server on port 8443")
 	app.ListenTLS(":8443", certFile, keyFile)
 	//log.Fatal(app.ListenTLS(":443", "./cert.pem", "./cert.key"))
 
