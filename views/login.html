@@ -14,7 +14,7 @@
   }
 </style>
 
-<main class="form-signin w-50 m-auto">
+<main class="form-signin w-75 m-auto">
 <div class="text-center mb-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
   
 
@@ -22,11 +22,11 @@
     <img class="mb-4" src="/static/images/login.svg" alt="" width="180" height="180">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="form-floating">
+    <div class="form-floating p-1">
       <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
-    <div class="form-floating">
+    <div class="form-floating p-1">
       <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
@@ -43,8 +43,8 @@
     <div class="alert alert-success success" role="alert">Success: {{ .success }}</div>
     {{ end }}
 
-    <a class="btn btn-success w-100" href="/register">Register</a>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <a class="btn btn-success w-100 mb-1" href="/register">Register</a>
+    <button class="w-100 btn btn-lg btn-primary " type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     <input type="hidden" name="_csrf" value="{{ .csrf }}">
 
