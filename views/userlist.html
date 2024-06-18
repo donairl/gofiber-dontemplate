@@ -1,4 +1,10 @@
 {{template "layouts/menu" .}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
 <main class="list my-2">
   <h4>User List</h4>
   <table class="table table-striped">
@@ -42,7 +48,7 @@
         // Do something with the data returned from the server
         $('#dmodal').find('.modal-body').html(data);
         $('#dmodal').find('.modal-footer').html(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
-
+        $('.input-group.date').datepicker({format: 'mm-dd-yyyy'});  
       });
 
     

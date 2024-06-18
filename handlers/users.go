@@ -124,7 +124,7 @@ func UserEdit(c *fiber.Ctx) error {
 			"status": ok,
 			"error":  flashError,
 			"User":   usermodel,
-		})
+		}, "layouts/blank")
 
 	}
 
