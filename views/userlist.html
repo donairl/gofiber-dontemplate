@@ -32,19 +32,20 @@
 
     $('.btn-edit').click(function () {
       var xUrl = $(this).data('href');
-      $('#dmodal').modal('show'); // Bootstrap modal show javascript
-      $('#dmodal').find('.modal-title').text("Edit User");
+     
       
       console.log(xUrl);
 
       $.get(xUrl , function (data) {
-
+        $('#dmodal').modal('show'); // Bootstrap modal show javascript
+       $('#dmodal').find('.modal-title').text("Edit User");
         // Do something with the data returned from the server
         $('#dmodal').find('.modal-body').html(data);
+        $('#dmodal').find('.modal-footer').html(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
+
       });
 
-      $('#dmodal').find('.modal-footer').html(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
-
+    
     });
 
 
