@@ -11,9 +11,9 @@ $(document).ready(function(){
 
 
 <main class="m-auto">
-    <form method="post" action="register">
+    <form method="post" action="user/edit">
 
-      <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
+   
   
       <div class="form-floating p-1">
    <input type="email" class="form-control" id="floatingUsername" name="username" value="{{.User.Email}}" placeholder="name@example.com">
@@ -56,8 +56,8 @@ $(document).ready(function(){
       {{ if .error }}
       <div class="alert alert-danger" role="alert">Error: {{ .error }}</div>
       {{ end }}
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      <button class="w-50 btn btn-lg btn-primary" type="submit">Save</button>
+      
       <input type="hidden" name="_csrf" value="{{ .csrf }}">
      
     </form>
