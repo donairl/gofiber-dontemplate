@@ -1,57 +1,53 @@
-
-
-
 <main class="m-auto">
-    <form method="post" action="user/edit">
+  <form method="post" action="user/edit" enctype="multipart/form-data">
 
-   
-  
-      <div class="form-floating p-1">
-   <input type="email" class="form-control" id="floatingUsername" name="username" value="{{.User.Email}}" placeholder="name@example.com">
-             <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating p-1">
-        <p style="color: red;">If you want to keep old password , leave this field empty.</p>
-      </div>
-      <div class="form-floating p-1">
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
-      <div class="form-floating p-1">
-        <input type="password" class="form-control" id="floatingRePassword" name="repassword" placeholder="Retype Password">
-        <label for="floatingPassword">Retype Password</label>
-      </div>
-      <div class="form-floating p-1">
-        <input type="text" class="form-control" id="floatingFullname" name="fullname" placeholder="Your name"  value="{{.User.Fullname}}">
-        <label for="floatingInput">Full Name</label>
-      </div>
-            <div class="form-floating p-1">
-              <select class="form-control" id="floatingRole" name="role">
-                <option value="1" {{if eq .User.Role 1}} selected {{end}}>Admin</option>
-                
-                <option value="0" {{if eq .User.Role 0}} selected {{end}}>Normal User</option>
-              </select>
-              <label for="floatingRole">Role</label>
-            </div>
+    <div class="form-floating p-1">
+      <input type="email" class="form-control" id="floatingUsername" name="username" value="{{.User.Email}}"
+        placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating p-1">
+      <p style="color: red;">If you want to keep old password , leave this field empty.</p>
+    </div>
+    <div class="form-floating p-1">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating p-1">
+      <input type="password" class="form-control" id="floatingRePassword" name="repassword"
+        placeholder="Retype Password">
+      <label for="floatingPassword">Retype Password</label>
+    </div>
+    <div class="form-floating p-1">
+      <input type="text" class="form-control" id="floatingFullname" name="fullname" placeholder="Your name"
+        value="{{.User.Fullname}}">
+      <label for="floatingInput">Full Name</label>
+    </div>
+    <div class="form-floating p-1">
+      <select class="form-control" id="floatingRole" name="role">
+        <option value="1" {{if eq .User.Role 1}} selected {{end}}>Admin</option>
 
-      <div class="input-group date" id="datepicker">
-      
-        <label for="start_date">Birthday</label>
-        <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control" id= "floatingBirthday" name="birthday">
-            <div class="input-group-addon">
-              <span class="input-group-text bg-light d-block rounded-0"><i class="fa fa-calendar"></i></span>
-            </div>
+        <option value="0" {{if eq .User.Role 0}} selected {{end}}>Normal User</option>
+      </select>
+      <label for="floatingRole">Role</label>
+    </div>
+
+    <div class="input-group date" id="datepicker">
+
+      <label for="start_date">Birthday</label>
+      <div class="input-group date" data-provide="datepicker">
+        <input type="text" class="form-control" id="floatingBirthday" name="birthday">
+        <div class="input-group-addon">
+          <span class="input-group-text bg-light d-block rounded-0"><i class="fa fa-calendar"></i></span>
         </div>
       </div>
-      {{ if .error }}
-      <div class="alert alert-danger" role="alert">Error: {{ .error }}</div>
-      {{ end }}
-      <button class="w-50 btn btn-lg btn-primary" type="submit">Save</button>
-      
-      <input type="hidden" name="_csrf" value="{{ .csrf }}">
-     
-    </form>
-  </main>
-  
-  
+    </div>
+    {{ if .error }}
+    <div class="alert alert-danger" role="alert">Error: {{ .error }}</div>
+    {{ end }}
+    <button class="w-50 btn btn-lg btn-primary" type="submit">Save</button>
+
+    <input type="hidden" name="_csrf" value="{{ .csrf }}">
+
+  </form>
+</main>
