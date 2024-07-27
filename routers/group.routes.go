@@ -18,6 +18,7 @@ func UserRoutes(app fiber.Router) {
 	// Generate route for GET with parameter id
 	r.Get("edit/:id", handlers.UserEdit)
 	r.Delete("/delete/:id", handlers.UserDeleteHandler)
+	r.Post("edit", handlers.UserEdit)
 
 }
 

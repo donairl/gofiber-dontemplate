@@ -73,20 +73,25 @@ func UserEdit(c *fiber.Ctx) error {
 		user.Email = c.FormValue("username")
 		password := c.FormValue("password")
 		repassword := c.FormValue("repassword")
-		if password != repassword {
-			return c.Status(fiber.StatusBadRequest).SendString("Password not match")
-		}
 
-		user.PasswordHash = lib.GeneratePassword(password)
+		if password != "" || repassword != "" {
+			if password != repassword {
+				return c.Status(fiber.StatusBadRequest).SendString("Password not match")
+			}
+
+			user.PasswordHash = lib.GeneratePassword(password)
+		}
 
 		role, err := strconv.ParseUint(c.FormValue("role"), 10, 64)
 		if err != nil {
 			return fiber.NewError(fiber.StatusBadRequest, "invalid role")
 		}
+
 		user.Role = uint(role)
 
 		birthdayStr := c.FormValue("birthday")
 		birthday, err := time.Parse("01-02-2006", birthdayStr)
+
 		if err != nil {
 			// handle error if the date format is incorrect
 			//return c.Status(fiber.StatusBadRequest).SendString("Invalid date format")
@@ -103,7 +108,7 @@ func UserEdit(c *fiber.Ctx) error {
 		}
 		user.Birthday = &birthday
 		user.Fullname = c.FormValue("fullname")
-		models.UserCreate(user)
+		models.UserUpdate(user)
 
 	} else {
 
@@ -128,5 +133,5 @@ func UserEdit(c *fiber.Ctx) error {
 
 	}
 
-	return c.Redirect("/user/list", fiber.StatusSeeOther)
+	return c.Redirect("/user/view", fiber.StatusSeeOther)
 }

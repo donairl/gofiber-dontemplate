@@ -1,5 +1,5 @@
 <main class="m-auto">
-  <form method="post" action="user/edit" enctype="multipart/form-data">
+  <form method="post" action="/user/edit" enctype="multipart/form-data">
 
     <div class="form-floating p-1">
       <input type="email" class="form-control" id="floatingUsername" name="username" value="{{.User.Email}}"
@@ -48,6 +48,8 @@
     <button class="w-50 btn btn-lg btn-primary" type="submit">Save</button>
 
     <input type="hidden" name="_csrf" value="{{ .csrf }}">
+    <input type="hidden" name="user_id" value="{{.User.ID}}">
+
 
   </form>
 </main>
