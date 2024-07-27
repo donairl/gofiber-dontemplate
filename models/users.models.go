@@ -40,8 +40,8 @@ func UserCreate(user *User) *gorm.DB {
 
 }
 
-func UserUpdate(id uint, user User) *gorm.DB {
-	result := database.Connection.Model(&User{}).Where("id = ?", id).Updates(user)
+func UserUpdate(user User) *gorm.DB {
+	result := database.Connection.Model(&User{}).Where("id = ?", user.ID).Updates(user)
 	return result
 }
 

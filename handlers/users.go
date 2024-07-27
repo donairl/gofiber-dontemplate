@@ -108,6 +108,13 @@ func UserEdit(c *fiber.Ctx) error {
 		}
 		user.Birthday = &birthday
 		user.Fullname = c.FormValue("fullname")
+		// get user_id from form value
+
+		userId, err := strconv.Atoi(c.FormValue("user_id"))
+		if err != nil {
+			return fiber.NewError(fiber.StatusBadRequest, "invalid user ID")
+		}
+		user.ID = uint(userId)
 		models.UserUpdate(user)
 
 	} else {
