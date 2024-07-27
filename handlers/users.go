@@ -115,7 +115,7 @@ func UserEdit(c *fiber.Ctx) error {
 			return fiber.NewError(fiber.StatusBadRequest, "invalid user ID")
 		}
 		user.ID = uint(userId)
-		models.UserUpdate(user)
+		models.UserUpdate(*user)
 
 	} else {
 
