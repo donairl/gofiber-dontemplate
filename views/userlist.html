@@ -60,7 +60,20 @@
 
     $('.btn-delete').click(function () {
       var id = $(this).data('id');
-      // Handle delete button click here
+        // Handle delete button click here
+      $.ajax({
+          method: "POST",
+          url: "/user/delete/",
+          data: {id: id}
+        })
+        .done(function(data) {
+          alert("User deleted successfully!");
+          location.reload();
+        })
+        .fail(function() {
+          alert("Failed to delete user!");
+        });
+         
     });
   })
 </script>
