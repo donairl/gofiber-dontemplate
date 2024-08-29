@@ -1,20 +1,18 @@
 package models
 
 import (
-	"time"
-
 	"github.com/donairl/gofiber-dontemplate/lib/database"
 	"gorm.io/gorm"
 )
 
 type Product struct {
 	gorm.Model
-	Name        string    `json:"name" binding:"required"`
-	Description string    `json:"description"`
-	Price       float64   `json:"price" binding:"required,min=0"`
-	ExpiryDate  time.Time `json:"expiry_date"`  // Add expired date field
-	Weight      float64   `json:"weight"`       // Add weight field
-	ProductType string    `json:"product_type"` // Add type of product field
+
+	Name        string  `json:"name" binding:"required"`
+	Description string  `json:"description"`
+	Price       float64 `json:"price" binding:"required,min=0"`
+	Weight      float64 `json:"weight"`       // Add weight field
+	ProductType string  `json:"product_type"` // Add type of product field
 }
 
 func GetProductByID(id uint) (Product, error) {
@@ -40,7 +38,7 @@ func UpdateProduct(product *Product) error {
 	return nil
 }
 
-func GetAllProducts() ([]Product, error) {
+func ProductsFindAll() ([]Product, error) {
 	var products []Product
 	if err := database.Connection.Find(&products).Error; err != nil {
 		return nil, err

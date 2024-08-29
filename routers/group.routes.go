@@ -22,10 +22,9 @@ func UserRoutes(app fiber.Router) {
 
 }
 
-func BlogRoutes(app fiber.Router) {
-	// r := app.Group("/blog")
-	// r.Get("/list", handlers.BlogListHandler)
-	// r.Post("/create", handlers.BlogCreateHandler)
-	// r.Put("/update/:id", handlers.BlogUpdateHandler)
-	// r.Delete("/delete/:id", handlers.BlogDeleteHandler)
+func ProductRoutes(app fiber.Router) {
+	r := app.Group("/product")
+	r.Get("/view", handlers.ProductView)
+	r.Post("/create", handlers.ProductCreate)
+
 }

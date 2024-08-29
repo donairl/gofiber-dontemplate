@@ -31,6 +31,7 @@ func main() {
 	database.ConnectDb()
 	// Migrate the User model
 	database.Connection.AutoMigrate(&models.User{})
+	database.Connection.AutoMigrate(&models.Product{})
 	lib.Store = session.New(sessConfig)
 
 	app := routers.New()
