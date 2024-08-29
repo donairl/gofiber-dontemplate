@@ -1,0 +1,25 @@
+{{template "layouts/menu" .}}
+
+<main class="list my-2">
+  <h4>Product List</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Products}}
+      <tr>
+        <td>{{.Name}}</td>
+        <td>{{.Price}}</td>
+        <td>{{.Weight}}</td>
+        <th scope="col">Action</th> 
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</main> 
