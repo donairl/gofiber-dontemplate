@@ -36,6 +36,15 @@ func ProductView(c *fiber.Ctx) error {
 }
 
 func ProductCreate(c *fiber.Ctx) error {
+	sess, err := lib.Store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+
+	if !IsAuthenticated(c) {
+		sess.Set("flash-error", "Forbidden, please login first")
+		return c.Redirect("/login", http.StatusMovedPermanently)
+	}
 
 	return c.SendString("You are test")
 	//return c.JSON(Products)

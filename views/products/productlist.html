@@ -19,7 +19,10 @@
         <td>{{.Name}}</td>
         <td>{{.Price}}</td>
         <td>{{.Weight}}</td>
-        <th scope="col">Action</th> 
+        <td>
+          <a href="/product/edit/{{.ID}}" class="btn btn-warning">Edit</a>
+          <a href="/product/delete/{{.ID}}" class="btn btn-danger">Delete</a>
+        </td> 
       </tr>
       {{end}}
     </tbody>
