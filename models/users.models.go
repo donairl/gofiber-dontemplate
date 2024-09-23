@@ -42,7 +42,7 @@ func UserCreate(user *User) *gorm.DB {
 
 func UserUpdate(user User) *gorm.DB {
 	result := database.Connection.Model(&User{}).Where("id = ?", user.ID).Updates(user)
-	return result
+	return result	
 }
 
 func UserDelete(id uint) *gorm.DB {
