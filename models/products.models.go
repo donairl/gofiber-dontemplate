@@ -43,5 +43,6 @@ func ProductsFindAll() ([]Product, error) {
 	if err := database.Connection.Find(&products).Error; err != nil {
 		return nil, err
 	}
+
 	return products, nil
 }
