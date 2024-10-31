@@ -28,3 +28,17 @@
     </tbody>
   </table>
 </main> 
+<script>
+  
+
+
+
+  $(document).ready(function () {
+    var acsrf = "{{.csrf }}"; 
+
+    $('.btn-delete').click(function () {
+      var xUrl = $(this).data('href');
+    });
+  
+  });
+</script>
