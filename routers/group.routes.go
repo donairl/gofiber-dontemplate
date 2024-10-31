@@ -26,5 +26,6 @@ func ProductRoutes(app fiber.Router) {
 	r := app.Group("/product")
 	r.Get("/view", handlers.ProductView)
 	r.Post("/create", handlers.ProductCreate)
+	r.Get("/create", handlers.ProductCreate)
 
 }

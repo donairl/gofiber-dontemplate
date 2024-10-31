@@ -42,6 +42,8 @@ func ProductCreate(c *fiber.Ctx) error {
 	if err != nil {
 		panic(err)
 	}
+	//csrf
+	csrfToken, _ := c.Locals("csrf").(string)
 
 	if !IsAuthenticated(c) {
 		sess.Set("flash-error", "Forbidden, please login first")
@@ -51,7 +53,7 @@ func ProductCreate(c *fiber.Ctx) error {
 	// Handle POST request (form submission)
 	if c.Method() == "POST" {
 		product := new(models.Product)
-		
+
 		if err := c.BodyParser(product); err != nil {
 			sess.Set("flash-error", "Invalid input data")
 			return c.Redirect("/products/create", http.StatusSeeOther)
@@ -69,5 +71,6 @@ func ProductCreate(c *fiber.Ctx) error {
 	// Handle GET request (display form)
 	return c.Render("products/productform", fiber.Map{
 		"Title": "Create New Product",
+		"csrf":  csrfToken,
 	})
 }
