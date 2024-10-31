@@ -1,0 +1,32 @@
+{{template "partials/header" .}}
+<div class="container mt-5">
+    <h2>Add New Product</h2>
+    <form action="/products/create" method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="weight" class="form-label">Weight</label>
+            <input type="number" class="form-control" id="weight" name="weight" step="0.01">
+        </div>
+        <div class="mb-3">
+            <label for="unit" class="form-label">Unit of Measurement</label>
+            <input type="text" class="form-control" id="unit" name="unit" placeholder="e.g., kg, pcs, etc">
+        </div>
+        <div class="mb-3">
+            <label for="product_type" class="form-label">Product Type</label>
+            <input type="text" class="form-control" id="product_type" name="product_type">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Product</button>
+    </form>
+</div>
+{{template "partials/footer" .}} 

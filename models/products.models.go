@@ -12,6 +12,7 @@ type Product struct {
 	Description string  `json:"description"`
 	Price       float64 `json:"price" binding:"required,min=0"`
 	Weight      float64 `json:"weight"`       // Add weight field
+	Unit        string  `json:"unit"`         // Add unit of measurement
 	ProductType string  `json:"product_type"` // Add type of product field
 }
 

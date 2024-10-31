@@ -46,6 +46,26 @@ func ProductCreate(c *fiber.Ctx) error {
 		return c.Redirect("/login", http.StatusMovedPermanently)
 	}
 
-	return c.SendString("You are test")
-	//return c.JSON(Products)
+	// Handle POST request (form submission)
+	if c.Method() == "POST" {
+		product := new(models.Product)
+		
+		if err := c.BodyParser(product); err != nil {
+			sess.Set("flash-error", "Invalid input data")
+			return c.Redirect("/products/create", http.StatusSeeOther)
+		}
+
+		if err := models.CreateProduct(product); err != nil {
+			sess.Set("flash-error", "Failed to create product: "+err.Error())
+			return c.Redirect("/products/create", http.StatusSeeOther)
+		}
+
+		sess.Set("flash-success", "Product created successfully")
+		return c.Redirect("/products", http.StatusSeeOther)
+	}
+
+	// Handle GET request (display form)
+	return c.Render("products/productform", fiber.Map{
+		"Title": "Create New Product",
+	})
 }
