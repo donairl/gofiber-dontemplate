@@ -24,6 +24,7 @@ func UserCrudView(c *fiber.Ctx) error {
 
 		panic(err)
 	}
+	csrfToken, _ := c.Locals("csrf").(string)
 
 	if !IsAuthenticated(c) {
 		sess.Set("flash-error", "Forbidden, please login first")
@@ -38,6 +39,7 @@ func UserCrudView(c *fiber.Ctx) error {
 	return c.Render("userlist", fiber.Map{
 		"Title": "List User Page",
 		"Users": Users,
+		"csrf":  csrfToken,
 	})
 
 }
@@ -45,7 +47,9 @@ func UserCrudView(c *fiber.Ctx) error {
 // user delete handler
 func UserDeleteHandler(c *fiber.Ctx) error {
 	id := c.Params("id")
+
 	userID, err := strconv.ParseUint(id, 10, 32)
+
 	if err != nil {
 		return fiber.NewError(fiber.ErrBadRequest.Code, "Invalid user ID")
 	}

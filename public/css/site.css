@@ -7,3 +7,11 @@
     background-color: #36d851;
 }
    
+/*box css*/   
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 10px;
+}

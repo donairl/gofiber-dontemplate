@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/donairl/gofiber-dontemplate/lib"
@@ -28,10 +29,11 @@ func ProductView(c *fiber.Ctx) error {
 			"error": err.Error(),
 		})
 	}
+	log.Println(products)
 
 	return c.Render("products/productlist", fiber.Map{
 		"Title":    "List Product Page",
-		"products": products,
+		"Products": products,
 	})
 }
 
