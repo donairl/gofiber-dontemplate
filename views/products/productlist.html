@@ -1,8 +1,15 @@
 {{template "layouts/menu" .}}
 
-<main class="list my-2">
-  <h4>Product List</h4>
-  <a href="/product/create" class="btn btn-primary">New</a>
+<main class="list my-2 mx-4">
+ 
+
+  
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Product List</h5>
+    </div>
+    <div class="card-body">
+
 
   <table class="table table-striped">
     <thead>
@@ -20,13 +27,16 @@
         <td>{{.Price}}</td>
         <td>{{.Weight}}</td>
         <td>
-          <a href="/product/edit/{{.ID}}" class="btn btn-warning">Edit</a>
+          <a href="/product/update/{{.ID}}" class="btn btn-warning">Edit</a>
           <a href="/product/delete/{{.ID}}" class="btn btn-danger">Delete</a>
         </td> 
       </tr>
       {{end}}
     </tbody>
   </table>
+    <a href="/product/create" class="btn btn-primary">New</a>
+    </div>
+  </div>
 </main> 
 <script>
   

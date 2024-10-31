@@ -5,32 +5,37 @@
 
 
 
-<main class="list my-2">
-  <h4>User List</h4>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Fullname</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Birthday</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{range .Users}}
-      <tr>
-        <td style="width: 20%">{{.Fullname}}</td>
-        <td style="width: 25%">{{.Email}}</td>
-        <td>{{.Birthday}} </td>
-        <td class="list-group-item d-flex justify-content-between align-items-center">
-          <button data-href="/user/edit/{{.ID}}" type="button" class="btn btn-primary w-100 btn-edit">Edit</button>
-          <button type="button" class="btn btn-danger w-100 cl-delete" id="btn-delete-{{.ID}}" data-id="{{.ID}}">Delete</button>
-
-        </td>
-      </tr>
-      {{end}}
-    </tbody>
-  </table>
+<main class="list my-2 mx-4">
+  <div class="card">
+    <div class="card-header">
+      <h4>User List</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Fullname</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .Users}}
+          <tr>
+            <td style="width: 20%">{{.Fullname}}</td>
+            <td style="width: 25%">{{.Email}}</td>
+            <td>{{.Birthday}} </td>
+            <td class="list-group-item d-flex justify-content-between align-items-center">
+              <button data-href="/user/edit/{{.ID}}" type="button" class="btn btn-primary w-100 btn-edit">Edit</button>
+              <button type="button" class="btn btn-danger w-100 cl-delete" id="btn-delete-{{.ID}}" data-id="{{.ID}}">Delete</button>
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   {{template "layouts/modal" .}}
 </main>
