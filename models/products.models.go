@@ -25,14 +25,14 @@ func GetProductByID(id uint) (Product, error) {
 	return product, nil
 }
 
-func CreateProduct(product *Product) error {
+func ProductCreate(product *Product) error {
 	if result := database.Connection.Create(product); result.Error != nil {
 		return result.Error
 	}
 	return nil
 }
 
-func UpdateProduct(product *Product) error {
+func ProductUpdate(product *Product) error {
 	if result := database.Connection.Save(product); result.Error != nil {
 		return result.Error
 	}
@@ -46,4 +46,8 @@ func ProductsFindAll() ([]Product, error) {
 	}
 
 	return products, nil
+}
+
+func ProductDelete(id uint) error {
+	return database.Connection.Delete(&Product{}, id).Error
 }
