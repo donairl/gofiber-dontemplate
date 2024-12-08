@@ -2,8 +2,6 @@ package routers
 
 import (
 	"github.com/donairl/gofiber-dontemplate/handlers"
-	"github.com/donairl/gofiber-dontemplate/repository"
-	"github.com/donairl/gofiber-dontemplate/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/monitor"
 )
@@ -25,10 +23,13 @@ func UserRoutes(app fiber.Router) {
 }
 
 func ProductRoutes(app fiber.Router) {
-	r := app.Group("/products")
-	productRepo := repository.NewProductRepository()
-	productService := services.NewProductService(productRepo)
-	productHandler := handlers.NewProductHandler(productService)
+	r := app.Group("/product")
+	r.Get("/view", handlers.ProductView)
+	r.Post("/create", handlers.ProductCreate)
+	r.Get("/create", handlers.ProductCreate)
+	r.Get("/update/:id", handlers.ProductUpdate)
+	r.Post("/update", handlers.ProductUpdate)
+	r.Delete("/delete/:id", handlers.ProductDelete)
 
 	r.Get("/", productHandler.ProductView)
 	r.Post("/create", productHandler.ProductCreate)
