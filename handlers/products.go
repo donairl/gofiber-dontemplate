@@ -5,14 +5,23 @@ import (
 	"net/http"
 
 	"github.com/donairl/gofiber-dontemplate/lib"
-	"github.com/donairl/gofiber-dontemplate/models"
+	"github.com/donairl/gofiber-dontemplate/services"
 	"github.com/gofiber/fiber/v2"
 )
 
-func ProductView(c *fiber.Ctx) error {
+type ProductHandler struct {
+	productService services.ProductService
+}
+
+func NewProductHandler(productService services.ProductService) *ProductHandler {
+	return &ProductHandler{
+		productService: productService,
+	}
+}
+
+func (h *ProductHandler) ProductView(c *fiber.Ctx) error {
 	sess, err := lib.Store.Get(c)
 	if err != nil {
-
 		panic(err)
 	}
 
@@ -23,7 +32,8 @@ func ProductView(c *fiber.Ctx) error {
 			http.StatusMovedPermanently,
 		)
 	}
-	products, err := models.ProductsFindAll()
+
+	products, err := h.productService.GetAllProducts()
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": err.Error(),
@@ -37,7 +47,7 @@ func ProductView(c *fiber.Ctx) error {
 	})
 }
 
-func ProductCreate(c *fiber.Ctx) error {
+func (h *ProductHandler) ProductCreate(c *fiber.Ctx) error {
 	sess, err := lib.Store.Get(c)
 	if err != nil {
 		panic(err)
@@ -49,5 +59,4 @@ func ProductCreate(c *fiber.Ctx) error {
 	}
 
 	return c.SendString("You are test")
-	//return c.JSON(Products)
 }
